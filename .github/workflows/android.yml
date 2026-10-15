@@ -8,8 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: 17 }
+      
+      # This brings sdkmanager into the PATH without the buggy old 'tools' package
+      - uses: android-actions/setup-android@v3
       
       - name: Install SDK/NDK
         run: sdkmanager "platforms;android-34" "build-tools;34.0.0" "ndk;26.1.10909125"
